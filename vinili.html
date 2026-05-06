@@ -1,4 +1,4 @@
-!<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>SoundNest - Vinili</title>
@@ -113,7 +113,12 @@ let totale = 0;
 
 function aggiungi(nome, prezzo){
   totale += prezzo;
+
+  // aggiorna totale visivo
   document.getElementById("totale").innerText = totale;
+
+  // salva nel localStorage 🔥
+  localStorage.setItem("totale", totale);
 
   let item = document.createElement("li");
   item.innerText = nome + " - " + prezzo + "€";
