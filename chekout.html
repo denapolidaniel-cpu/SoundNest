@@ -55,20 +55,17 @@
 </div>
 
 <script>
-  let totale = localStorage.getItem("totale");
+  let totale = localStorage.getItem("totale") || 0;
 
-  if(totale){
-    document.getElementById("totale").innerText = totale;
-  }
+document.getElementById("totale").innerText = totale;
 
-  function compra(){
-    alert("Acquisto completato! 🎉");
+function compra(){
+  alert("Acquisto completato! 🎉");
 
-  
-    localStorage.removeItem("totale");
+  localStorage.removeItem("totale");
 
-    window.location.href = "index.html";
-  }
+  window.location.href = "index.html";
+}
 </script>
 
 </body>
