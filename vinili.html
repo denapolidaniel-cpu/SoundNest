@@ -128,10 +128,8 @@
   let cards = document.querySelectorAll(".card");
 
   cards.forEach(card => {
-    if(genere === "tutti"){
-      card.style.display = "  ";
-    } else if(card.getAttribute("data-genere") === genere){
-      card.style.display = "  ";
+    if(genere === "tutti" || card.getAttribute("data-genere") === genere){
+      card.style.display = "";
     } else {
       card.style.display = "none";
     }
