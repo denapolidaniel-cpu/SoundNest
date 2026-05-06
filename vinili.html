@@ -51,11 +51,29 @@
       border-radius: 10px;
     }
 
-    select {
-  padding: 10px;
-  border-radius: 8px;
+ .filtri {
   margin: 20px;
-  font-size: 16px;
+}
+
+.filtri button {
+  background-color: white;
+  border: 2px solid darkblue;
+  color: darkblue;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filtri button:hover {
+  background-color: darkblue;
+  color: white;
+}
+
+.filtri button.attivo {
+  background-color: darkblue;
+  color: white;
 }
   </style>
 </head>
@@ -75,12 +93,12 @@
 <main>
 <h3>Filtra per genere</h3>
 
-<select onchange="filtraGenere(this.value)">
-  <option value="tutti">Tutti</option>
-  <option value="pop">Pop</option>
-  <option value="rap">Rap</option>
-  <option value="rock">Rock</option>
-</select>
+<div class="filtri">
+  <button onclick="filtraGenere('tutti')" class="attivo">Tutti</button>
+  <button onclick="filtraGenere('pop')">Pop</button>
+  <button onclick="filtraGenere('rap')">Rap</button>
+  <button onclick="filtraGenere('rock')">Rock</button>
+</div>
   
   <h2>Vinili in evidenza</h2>
 
@@ -125,6 +143,8 @@
 
 <script>
  function filtraGenere(genere){
+
+  // filtro prodotti
   let cards = document.querySelectorAll(".card");
 
   cards.forEach(card => {
@@ -134,8 +154,16 @@
       card.style.display = "none";
     }
   });
+
+  // evidenzia bottone attivo 🔥
+  let bottoni = document.querySelectorAll(".filtri button");
+
+  bottoni.forEach(btn => {
+    btn.classList.remove("attivo");
+  });
+
+  event.target.classList.add("attivo");
 }
-  
 let totale = 0;
 
 function aggiungi(nome, prezzo){
