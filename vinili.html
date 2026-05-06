@@ -94,10 +94,10 @@
 <h3>Filtra per genere</h3>
 
 <div class="filtri">
-  <button onclick="filtraGenere('tutti')" class="attivo">Tutti</button>
-  <button onclick="filtraGenere('pop')">Pop</button>
-  <button onclick="filtraGenere('rap')">Rap</button>
-  <button onclick="filtraGenere('rock')">Rock</button>
+  <button onclick="filtraGenere('tutti', this)" class="attivo">Tutti</button>
+  <button onclick="filtraGenere('pop', this)">Pop</button>
+  <button onclick="filtraGenere('rap', this)">Rap</button>
+  <button onclick="filtraGenere('rock', this)">Rock</button>
 </div>
   
   <h2>Vinili in evidenza</h2>
@@ -142,7 +142,7 @@
 </footer>
 
 <script>
- function filtraGenere(genere){
+ function filtraGenere(genere, bottone){
 
   // filtro prodotti
   let cards = document.querySelectorAll(".card");
@@ -155,14 +155,15 @@
     }
   });
 
-  // evidenzia bottone attivo 🔥
+  // reset bottoni
   let bottoni = document.querySelectorAll(".filtri button");
 
   bottoni.forEach(btn => {
     btn.classList.remove("attivo");
   });
 
-  event.target.classList.add("attivo");
+  // attiva quello cliccato
+  bottone.classList.add("attivo");
 }
 let totale = 0;
 
