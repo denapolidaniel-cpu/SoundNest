@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SoundNest - Checkout</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f0f2f5;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      width: 350px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    button {
+      background-color: darkblue;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛒 Checkout</h1>
+</header>
+
+<div class="box">
+
+  <h3>Totale ordine: <span id="totale">0</span>€</h3>
+
+  <input type="text" placeholder="Nome"><br>
+  <input type="text" placeholder="Indirizzo"><br>
+  <input type="text" placeholder="Carta di credito"><br>
+
+  <button onclick="compra()">Completa acquisto</button>
+
+</div>
+
+<script>
+  let totale = localStorage.getItem("totale");
+
+  if(totale){
+    document.getElementById("totale").innerText = totale;
+  }
+
+  function compra(){
+    alert("Acquisto completato! 🎉");
+
+  
+    localStorage.removeItem("totale");
+
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
