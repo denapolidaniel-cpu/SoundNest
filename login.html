@@ -26,22 +26,61 @@
 
 <body>
 
-<header>
-  <h1>SoundNest</h1>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="vinili.html">Vinili</a>
-    <a href="login.html">Login</a>
-  </nav>
-</header>
-
 <main>
+
   <h2>Login</h2>
 
-  <input type="text" placeholder="Username"><br>
-  <input type="password" placeholder="Password"><br>
-  <button>Accedi</button>
+  <input type="email" id="email" placeholder="Email"><br>
+
+  <input type="password" id="password" placeholder="Password"><br>
+
+  <button onclick="login()">Accedi</button>
+
+  <p id="messaggio"></p>
+
+</main>
+
+<script>
+
+function login(){
+
+  const email = document.getElementById("email").value;
+
+  const password = document.getElementById("password").value;
+
+  // account demo
+  const emailCorretta = "admin@soundnest.com";
+  const passwordCorretta = "1234";
+
+  if(email === emailCorretta &&
+     password === passwordCorretta){
+
+    // UTENTE LOGGATO
+    const utente = {
+      email: email
+    };
+
+    // salva login
+    localStorage.setItem(
+      "utenteLoggato",
+      JSON.stringify(utente)
+    );
+
+    document.getElementById("messaggio")
+      .innerText = "Login effettuato!";
+
+    // reindirizzamento
+    window.location.href = "vinili.html";
+
+  } else {
+
+    document.getElementById("messaggio")
+      .innerText = "Email o password errati";
+  }
+}
+
+</script>
+
 </main>
 
 <footer>
