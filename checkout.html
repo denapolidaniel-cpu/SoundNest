@@ -66,14 +66,24 @@ if(!utente){
   window.location.href = "login.html";
 }
 
-  let totale = localStorage.getItem("totale") || 0;
+  let carrello =
+  JSON.parse(localStorage.getItem("carrello")) || [];
+
+let totale = 0;
+
+carrello.forEach(prodotto => {
+  totale += prodotto.prezzo;
+});
+
+document.getElementById("totale")
+  .innerText = totale;
 
 document.getElementById("totale").innerText = totale;
 
 function compra(){
   alert("Acquisto completato! 🎉");
 
-  localStorage.removeItem("totale");
+  localStorage.removeItem("carrello");
 
   window.location.href = "index.html";
 }
