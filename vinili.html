@@ -169,17 +169,6 @@ if(datiUtente){
   window.location.href = "login.html";
 }
 
-  // controllo login
-const utente =
-  localStorage.getItem("utenteLoggato");
-
-if(!utente){
-
-  alert("Devi effettuare il login");
-
-  window.location.href = "login.html";
-}
-
   
  function filtraGenere(genere, bottone){
 
@@ -207,19 +196,36 @@ if(!utente){
 let totale = 0;
 
 function aggiungi(nome, prezzo){
-  totale += prezzo;
 
-  // aggiorna totale visivo
-  document.getElementById("totale").innerText = totale;
+  const utente =
+    localStorage.getItem("utenteLoggato");
 
-  // salva nel localStorage 🔥
+  // controllo login
+  if(!utente){
+
+    alert("Devi effettuare il login per acquistare");
+
+    window.location.href = "login.html";
+
+    return;
+  }
+
+  totale = Number(totale) + prezzo;
+
+  // aggiorna totale
+  document.getElementById("totale").innerText =
+    totale;
+
+  // salva totale
   localStorage.setItem("totale", totale);
 
   let item = document.createElement("li");
+
   item.innerText = nome + " - " + prezzo + "€";
 
-  let lista = document.getElementById("lista-carrello");
-  lista.appendChild(item);
+  document.getElementById("lista-carrello")
+    .appendChild(item);
+}
 }
 </script>
 
