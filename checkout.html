@@ -55,6 +55,16 @@
 </div>
 
 <script>
+const utente =
+  localStorage.getItem("utenteLoggato");
+
+if(!utente){
+
+  alert("Devi effettuare il login");
+
+  window.location.href = "login.html";
+}
+
   let totale = localStorage.getItem("totale") || 0;
 
 document.getElementById("totale").innerText = totale;
