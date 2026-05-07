@@ -193,11 +193,8 @@ if(datiUtente){
   // attiva quello cliccato
   bottone.classList.add("attivo");
 }
-let totale =
-  localStorage.getItem("totale") || 0;
-
-document.getElementById("totale").innerText =
-  totale;
+// aggiorna carrello all'apertura pagina
+aggiornaCarrello();
 
 function aggiungi(nome, prezzo){
 
