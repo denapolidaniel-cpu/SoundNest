@@ -146,6 +146,19 @@
 </footer>
 
 <script>
+
+  // controllo login
+const utente =
+  localStorage.getItem("utenteLoggato");
+
+if(!utente){
+
+  alert("Devi effettuare il login");
+
+  window.location.href = "login.html";
+}
+
+  
  function filtraGenere(genere, bottone){
 
   // filtro prodotti
