@@ -92,6 +92,10 @@
     <a href="vinili.html">Vinili</a>
     <a href="login.html">Login</a>
   </nav>
+
+  <p id="utente"></p>
+
+  <button onclick="logout()">Logout</button>
 </header>
 
 <main>
@@ -146,6 +150,24 @@
 </footer>
 
 <script>
+
+  const datiUtente =
+  JSON.parse(localStorage.getItem("utenteLoggato"));
+
+if(datiUtente){
+
+  document.getElementById("utente")
+    .innerText =
+    "👤 " + datiUtente.email;
+}
+
+  
+  function logout(){
+
+  localStorage.removeItem("utenteLoggato");
+
+  window.location.href = "login.html";
+}
 
   // controllo login
 const utente =
