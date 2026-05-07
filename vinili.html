@@ -193,7 +193,11 @@ if(datiUtente){
   // attiva quello cliccato
   bottone.classList.add("attivo");
 }
-let totale = 0;
+let totale =
+  localStorage.getItem("totale") || 0;
+
+document.getElementById("totale").innerText =
+  totale;
 
 function aggiungi(nome, prezzo){
 
@@ -225,7 +229,6 @@ function aggiungi(nome, prezzo){
 
   document.getElementById("lista-carrello")
     .appendChild(item);
-}
 }
 </script>
 
