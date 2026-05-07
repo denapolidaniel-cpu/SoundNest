@@ -204,7 +204,6 @@ function aggiungi(nome, prezzo){
   const utente =
     localStorage.getItem("utenteLoggato");
 
-  // controllo login
   if(!utente){
 
     alert("Devi effettuare il login per acquistare");
@@ -214,22 +213,55 @@ function aggiungi(nome, prezzo){
     return;
   }
 
-  totale = Number(totale) + prezzo;
+  // prendo carrello esistente
+  let carrello =
+    JSON.parse(localStorage.getItem("carrello")) || [];
 
-  // aggiorna totale
-  document.getElementById("totale").innerText =
-    totale;
+  // aggiungo prodotto
+  carrello.push({
+    nome: nome,
+    prezzo: prezzo
+  });
 
-  // salva totale
-  localStorage.setItem("totale", totale);
+  // salvo carrello
+  localStorage.setItem(
+    "carrello",
+    JSON.stringify(carrello)
+  );
 
-  let item = document.createElement("li");
-
-  item.innerText = nome + " - " + prezzo + "€";
-
-  document.getElementById("lista-carrello")
-    .appendChild(item);
+  aggiornaCarrello();
 }
+  function aggiornaCarrello(){
+
+  let carrello =
+    JSON.parse(localStorage.getItem("carrello")) || [];
+
+  let lista =
+    document.getElementById("lista-carrello");
+
+  lista.innerHTML = "";
+
+  let totale = 0;
+
+  carrello.forEach(prodotto => {
+
+    let item = document.createElement("li");
+
+    item.innerText =
+      prodotto.nome + " - " +
+      prodotto.prezzo + "€";
+
+    lista.appendChild(item);
+
+    totale += prodotto.prezzo;
+  });
+
+  document.getElementById("totale")
+    .innerText = totale;
+}
+
+// aggiorna carrello all'apertura pagina
+aggiornaCarrello();
 </script>
 
 </body>
