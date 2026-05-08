@@ -22,19 +22,40 @@ const vinile = vinili[index];
 document.getElementById("prodotto")
 .innerHTML = `
 
-  <img src="${vinile.immagine}" width="300">
+<div class="pagina-prodotto">
 
-  <h1>${vinile.nome}</h1>
+  <img
+    src="${vinile.immagine}"
+    class="cover"
+  >
 
-  <h2>${vinile.artista}</h2>
+  <div class="info">
 
-  <p>${vinile.prezzo}€</p>
+    <h1>${vinile.nome}</h1>
 
-  <button onclick="
-    aggiungiCarrello()
-  ">
-    Aggiungi al carrello
-  </button>
+    <h2>${vinile.artista}</h2>
+
+    <p class="prezzo">
+      ${vinile.prezzo}€
+    </p>
+
+    <p class="descrizione">
+      ${vinile.descrizione}
+    </p>
+
+    <button onclick="aggiungiCarrello()">
+      Aggiungi al carrello
+    </button>
+
+  </div>
+
+</div>
+
+<h2>Potrebbe piacerti anche</h2>
+
+<div id="consigliati"></div>
+
+`;
 
 `;
 
