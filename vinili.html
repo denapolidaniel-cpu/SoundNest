@@ -825,6 +825,15 @@ function rimuoviDalCarrello(index){
     "carrello",
     JSON.stringify(carrello)
   );
+
+  localStorage.setItem(
+  "catalogo",
+  JSON.stringify(vinili)
+);
+
+aggiornaCarrello();
+
+mostraVinili(vinili);
 }
   aggiornaCarrello();
   
