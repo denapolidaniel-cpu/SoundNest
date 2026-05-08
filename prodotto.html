@@ -326,20 +326,26 @@ document.getElementById("consigliati");
 
 consigliati.slice(0,4).forEach(album => {
 
-  sezione.innerHTML += `
+  const card = document.createElement("div");
 
-   <div class="card"
-onclick='apriProdotto(${JSON.stringify(album)})'>
+  card.className = "card";
 
-  <img src="${album.immagine}">
+  card.innerHTML = `
+    <img src="${album.immagine}">
 
-  <h3>${album.nome}</h3>
+    <h3>${album.nome}</h3>
 
-  <p>${album.artista}</p>
-
-</div>
-
+    <p>${album.artista}</p>
   `;
+
+  card.addEventListener("click", () => {
+
+    apriProdotto(album);
+
+  });
+
+  sezione.appendChild(card);
+
 });
 
 function apriProdotto(album){
