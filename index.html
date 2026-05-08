@@ -147,7 +147,9 @@ nav a {
 
   object-fit:cover;
 
-  filter:brightness(0.45);
+ filter:
+brightness(0.45)
+contrast(1.1);
 }
 
 .overlay{
@@ -202,6 +204,98 @@ nav a {
       text-align: center;
       padding: 20px;
     }
+
+  .overlay{
+  animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:
+    translateY(-50%)
+    translateX(-40px);
+  }
+
+  to{
+    opacity:1;
+    transform:
+    translateY(-50%)
+    translateX(0);
+  }
+}
+
+    .genres{
+  padding:80px 40px;
+  text-align:center;
+}
+
+.genre-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+
+  gap:30px;
+
+  margin-top:40px;
+}
+
+.genre-card{
+  height:220px;
+
+  border-radius:30px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:36px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.4s;
+
+  background-size:cover;
+  background-position:center;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.genre-card::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:rgba(0,0,0,0.45);
+}
+
+.genre-card h3{
+  position:relative;
+  z-index:2;
+}
+
+.genre-card:hover{
+  transform:scale(1.03);
+}
+
+.rap{
+  background-image:url('img/rap.jpg');
+}
+
+.pop{
+  background-image:url('img/pop.jpg');
+}
+
+.rock{
+  background-image:url('img/rock.jpg');
+}
+
   </style>
 </head>
 
@@ -275,18 +369,28 @@ nav a {
 
 </section>
 
-<main>
+  <section class="genres">
 
-  <div class="hero">
-    <div class="hero-content">
-      <h2>Scopri il suono autentico del vinile</h2>
-      <p>I migliori album, direttamente a casa tua</p>
+  <h2>Esplora per genere</h2>
 
-      <a href="vinili.html">
-        <button class="btn">Vai ai Vinili</button>
-      </a>
+  <div class="genre-grid">
+
+    <div class="genre-card rap">
+      <h3>Rap</h3>
     </div>
+
+    <div class="genre-card pop">
+      <h3>Pop</h3>
+    </div>
+
+    <div class="genre-card rock">
+      <h3>Rock</h3>
+    </div>
+
   </div>
+
+</section>
+<main>
 
   <div class="features">
 
