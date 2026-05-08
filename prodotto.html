@@ -210,6 +210,15 @@ h2{
   }
 
 }
+
+#consigliati::-webkit-scrollbar{
+  height:8px;
+}
+
+#consigliati::-webkit-scrollbar-thumb{
+  background:#00d4ff;
+  border-radius:20px;
+}
   </style>
 </head>
 
@@ -319,18 +328,30 @@ consigliati.slice(0,4).forEach(album => {
 
   sezione.innerHTML += `
 
-    <div class="card">
+   <div class="card"
+onclick='apriProdotto(${JSON.stringify(album)})'>
 
-      <img src="${album.immagine}">
+  <img src="${album.immagine}">
 
-      <h3>${album.nome}</h3>
+  <h3>${album.nome}</h3>
 
-      <p>${album.artista}</p>
+  <p>${album.artista}</p>
 
-    </div>
+</div>
 
   `;
 });
+
+function apriProdotto(album){
+
+  localStorage.setItem(
+    "vinileSelezionato",
+    JSON.stringify(album)
+  );
+
+  window.location.href =
+  "prodotto.html";
+}
 
 </script>
 
