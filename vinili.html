@@ -876,6 +876,12 @@ function aggiungi(nome, prezzo){
 
 // aggiorna carrello all'apertura pagina
 aggiornaCarrello();
+
+  localStorage.setItem(
+  "catalogo",
+  JSON.stringify(vinili)
+);
+  
   mostraVinili(vinili);
 </script>
 
