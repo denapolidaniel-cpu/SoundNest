@@ -19,6 +19,8 @@
   gap:30px;
 
   padding:40px;
+
+  justify-items:center;
 }
 
     button {
@@ -79,7 +81,8 @@
 
 .card{
   background: #181818;
-  width:260px;
+  width:100%;
+max-width:260px;
   border-radius:20px;
   overflow:hidden;
 
@@ -440,17 +443,6 @@ function filtraGenere(genere, bottone){
 
   bottone.classList.add("attivo");
 }
-
-  // reset bottoni
-  let bottoni = document.querySelectorAll(".filtri button");
-
-  bottoni.forEach(btn => {
-    btn.classList.remove("attivo");
-  });
-
-  // attiva quello cliccato
-  bottone.classList.add("attivo");
-}
 // aggiorna carrello all'apertura pagina
 aggiornaCarrello();
 
@@ -483,8 +475,6 @@ function aggiungi(nome, prezzo){
     "carrello",
     JSON.stringify(carrello)
   );
-
-  aggiornaCarrello();
 }
   function aggiornaCarrello(){
 
