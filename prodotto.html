@@ -88,9 +88,10 @@ if(!vinili){
 
   throw new Error("Catalogo mancante");
 }
-const index =
-localStorage.getItem("vinileSelezionato");
-
+const vinile = JSON.parse(
+  localStorage.getItem("vinileSelezionato")
+);
+  
 const vinile = vinili[index];
 
 document.getElementById("prodotto")
