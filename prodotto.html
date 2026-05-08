@@ -91,6 +91,15 @@ if(!vinili){
 const vinile = JSON.parse(
   localStorage.getItem("vinileSelezionato")
 );
+
+  if(!vinile){
+
+  document.body.innerHTML = `
+    <h1>Prodotto non trovato</h1>
+  `;
+
+  throw new Error("Vinile mancante");
+}
   
 const vinile = vinili[index];
 
