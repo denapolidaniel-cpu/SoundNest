@@ -651,42 +651,45 @@ function mostraVinili(lista){
 
   container.innerHTML = "";
 
-lista.forEach((vinile, index) => {
+lista.forEach((vinile) => {
 
-    container.innerHTML += `
+  const card = document.createElement("div");
 
-      <div class="card" data-genere="${vinile.genere}">
+  card.className = "card";
 
-        <img src="${vinile.immagine}" alt="${vinile.nome}">
+  card.innerHTML = `
 
-        <h3>${vinile.nome}</h3>
+    <img src="${vinile.immagine}" alt="${vinile.nome}">
 
-        <p>${vinile.artista}</p>
+    <h3>${vinile.nome}</h3>
 
-        <p>${vinile.prezzo}€</p>
+    <p>${vinile.artista}</p>
 
-        <button onclick="
-  apriProdotto(${index})
-">
-  Compra
-</button>
+    <p>${vinile.prezzo}€</p>
 
-      </div>
+    <button>Compra</button>
 
-    `;
+  `;
+
+  card.querySelector("button")
+  .addEventListener("click", () => {
+    apriProdotto(vinile);
   });
+
+  container.appendChild(card);
+
+});
 }
 
-  function apriProdotto(index){
+  function apriProdotto(vinile){
 
   localStorage.setItem(
     "vinileSelezionato",
-    index
+    JSON.stringify(vinile)
   );
 
   window.location.href = "prodotto.html";
 }
-
   
   const datiUtente =
   JSON.parse(localStorage.getItem("utenteLoggato"));
