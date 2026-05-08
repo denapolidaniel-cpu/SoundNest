@@ -268,15 +268,47 @@ footer{
     transform:translateY(0);
   }
   
-}#lista-carrello button{
-  margin-left:10px;
-  background:red;
+#lista-carrello button{
+
+  margin-left:12px;
+
+  width:32px;
+  height:32px;
+
   border:none;
-  color:white;
   border-radius:50%;
-  width:25px;
-  height:25px;
+
+  background:#ff2b2b;
+
+  color:white;
+
+  font-size:18px;
+  font-weight:bold;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   cursor:pointer;
+
+  transition:0.3s;
+}
+
+#lista-carrello button:hover{
+  transform:scale(1.1);
+  background:#ff0000;
+}
+
+
+    #lista-carrello li{
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin:12px 0;
+
+  list-style:none;
 }
 
 
