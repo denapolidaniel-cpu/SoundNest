@@ -79,6 +79,15 @@ const vinili = JSON.parse(
   localStorage.getItem("catalogo")
 );
 
+if(!vinili){
+
+  document.body.innerHTML = `
+    <h1>Catalogo non trovato</h1>
+    <p>Torna alla pagina vinili.</p>
+  `;
+
+  throw new Error("Catalogo mancante");
+}
 const index =
 localStorage.getItem("vinileSelezionato");
 
