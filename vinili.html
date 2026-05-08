@@ -10,12 +10,16 @@
   color:white;
   text-align:center;
 }
-    .container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+    .container{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+
+  gap:30px;
+
+  padding:40px;
+}
 
     .card {
       background-color: white;
@@ -231,8 +235,7 @@ nav a:hover{
 </section>
 
 <main>
-
-<main>
+  
 <h3>Filtra per genere</h3>
 
 <div class="filtri">
