@@ -120,6 +120,81 @@ nav a {
   transform: scale(1.1);
 }
 
+  .hero-slider{
+  position:relative;
+  height:85vh;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+
+  width:100%;
+  height:100%;
+
+  opacity:0;
+
+  transition:1s;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  filter:brightness(0.45);
+}
+
+.overlay{
+  position:absolute;
+
+  top:50%;
+  left:10%;
+
+  transform:translateY(-50%);
+
+  max-width:600px;
+}
+
+.overlay h1{
+  font-size:72px;
+  margin-bottom:20px;
+}
+
+.overlay p{
+  font-size:24px;
+  color:#ddd;
+
+  margin-bottom:30px;
+}
+
+.overlay a{
+  display:inline-block;
+
+  padding:15px 35px;
+
+  border-radius:40px;
+
+  background:
+  linear-gradient(45deg,#00d4ff,#0066ff);
+
+  color:white;
+
+  text-decoration:none;
+  font-weight:bold;
+
+  transition:0.3s;
+}
+
+.overlay a:hover{
+  transform:scale(1.05);
+}
+
     /* FOOTER */
     footer {
       background-color: #0a0a23;
@@ -141,6 +216,64 @@ nav a {
     <a href="login.html">Login</a>
   </nav>
 </header>
+
+  <section class="hero-slider">
+
+  <div class="slide active">
+    <img src="img/kendrick-banner.jpg">
+
+    <div class="overlay">
+
+      <h1>Kendrick Lamar</h1>
+
+      <p>
+        Il rap contemporaneo incontra la leggenda.
+      </p>
+
+      <a href="vinili.html">
+        Scopri i vinili
+      </a>
+
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="img/weeknd-banner.jpg">
+
+    <div class="overlay">
+
+      <h1>The Weeknd</h1>
+
+      <p>
+        Atmosfere dark pop e sonorità uniche.
+      </p>
+
+      <a href="vinili.html">
+        Esplora
+      </a>
+
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="img/kanye-banner.jpg">
+
+    <div class="overlay">
+
+      <h1>Kanye West</h1>
+
+      <p>
+        Album iconici che hanno cambiato il rap.
+      </p>
+
+      <a href="vinili.html">
+        Guarda ora
+      </a>
+
+    </div>
+  </div>
+
+</section>
 
 <main>
 
@@ -198,6 +331,27 @@ nav a {
   </div>
 
 </div>
+
+  <script>
+    const slides =
+document.querySelectorAll(".slide");
+
+let index = 0;
+
+setInterval(() => {
+
+  slides[index].classList.remove("active");
+
+  index++;
+
+  if(index >= slides.length){
+    index = 0;
+  }
+
+  slides[index].classList.add("active");
+
+}, 4000);
+  </script>
 </main>
 
 <footer>
