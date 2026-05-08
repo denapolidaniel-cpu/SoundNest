@@ -267,7 +267,19 @@ footer{
     opacity:1;
     transform:translateY(0);
   }
+  
+}#lista-carrello button{
+  margin-left:10px;
+  background:red;
+  border:none;
+  color:white;
+  border-radius:50%;
+  width:25px;
+  height:25px;
+  cursor:pointer;
 }
+
+
   </style>
 </head>
 
@@ -768,7 +780,7 @@ function aggiungi(nome, prezzo){
 
   aggiornaCarrello();
 }
-  function aggiornaCarrello(){
+function aggiornaCarrello(){
 
   let carrello =
     JSON.parse(localStorage.getItem("carrello")) || [];
@@ -780,13 +792,16 @@ function aggiungi(nome, prezzo){
 
   let totale = 0;
 
-  carrello.forEach(prodotto => {
+  carrello.forEach((prodotto, index) => {
 
     let item = document.createElement("li");
 
-    item.innerText =
-      prodotto.nome + " - " +
-      prodotto.prezzo + "€";
+    item.innerHTML = `
+      ${prodotto.nome} - ${prodotto.prezzo}€
+      <button onclick="rimuoviDalCarrello(${index})">
+        ❌
+      </button>
+    `;
 
     lista.appendChild(item);
 
@@ -797,13 +812,23 @@ function aggiungi(nome, prezzo){
     .innerText = totale;
 }
 
-// aggiorna carrello all'apertura pagina
-aggiornaCarrello();
+function rimuoviDalCarrello(index){
 
+  let carrello =
+    JSON.parse(localStorage.getItem("carrello")) || [];
+
+  // rimuove il prodotto
+  carrello.splice(index, 1);
+
+  // salva il nuovo carrello
   localStorage.setItem(
-  "catalogo",
-  JSON.stringify(vinili)
-);
+    "carrello",
+    JSON.stringify(carrello)
+  );
+
+  // aggiorna grafica
+  aggiornaCarrello();
+}
   
   mostraVinili(vinili);
 </script>
