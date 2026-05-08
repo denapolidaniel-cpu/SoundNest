@@ -667,11 +667,25 @@ lista.forEach((vinile) => {
 
     <p>${vinile.prezzo}€</p>
 
-   <<button>
-  Compra
-</button>
+    <button>Compra</button>
 
   `;
+
+  card.querySelector("button")
+  .addEventListener("click", () => {
+
+    localStorage.setItem(
+      "vinileSelezionato",
+      JSON.stringify(vinile)
+    );
+
+    window.location.href = "prodotto.html";
+
+  });
+
+  container.appendChild(card);
+
+});
 
   card.querySelector("button")
   .addEventListener("click", () => {
@@ -681,16 +695,6 @@ lista.forEach((vinile) => {
   container.appendChild(card);
 
 });
-}
-
-  function apriProdotto(vinile){
-
-  localStorage.setItem(
-    "vinileSelezionato",
-    JSON.stringify(vinile)
-  );
-
-  window.location.href = "prodotto.html";
 }
   
   const datiUtente =
