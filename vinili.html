@@ -443,8 +443,6 @@ function filtraGenere(genere, bottone){
 
   bottone.classList.add("attivo");
 }
-// aggiorna carrello all'apertura pagina
-aggiornaCarrello();
 
 function aggiungi(nome, prezzo){
 
@@ -475,6 +473,8 @@ function aggiungi(nome, prezzo){
     "carrello",
     JSON.stringify(carrello)
   );
+
+  aggiornaCarrello();
 }
   function aggiornaCarrello(){
 
