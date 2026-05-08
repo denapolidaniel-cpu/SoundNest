@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dettaglio Vinile</title>
+</head>
 
+<body>
+
+  <div id="prodotto"></div>
+
+<script>
+
+const vinili = JSON.parse(
+  localStorage.getItem("catalogo")
+);
+
+const index =
+localStorage.getItem("vinileSelezionato");
+
+const vinile = vinili[index];
+
+document.getElementById("prodotto")
+.innerHTML = `
+
+  <img src="${vinile.immagine}" width="300">
+
+  <h1>${vinile.nome}</h1>
+
+  <h2>${vinile.artista}</h2>
+
+  <p>${vinile.prezzo}€</p>
+
+  <button onclick="
+    aggiungiCarrello()
+  ">
+    Aggiungi al carrello
+  </button>
+
+`;
+
+function aggiungiCarrello(){
+
+  let carrello =
+  JSON.parse(localStorage.getItem("carrello"))
+  || [];
+
+  carrello.push(vinile);
+
+  localStorage.setItem(
+    "carrello",
+    JSON.stringify(carrello)
+  );
+
+  alert("Aggiunto al carrello");
+}
+
+</script>
+
+</body>
+</html>
