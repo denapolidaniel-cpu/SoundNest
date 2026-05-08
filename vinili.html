@@ -731,7 +731,7 @@ function mostraVinili(lista){
 
   container.innerHTML = "";
 
-  lista.forEach(vinile => {
+lista.forEach((vinile, index) => {
 
     container.innerHTML += `
 
@@ -746,18 +746,25 @@ function mostraVinili(lista){
         <p>${vinile.prezzo}€</p>
 
         <button onclick="
-          aggiungi(
-            '${vinile.nome}',
-            ${vinile.prezzo}
-          )
-        ">
-          Compra
-        </button>
+  apriProdotto(${index})
+">
+  Compra
+</button>
 
       </div>
 
     `;
   });
+
+  function apriProdotto(index){
+
+  localStorage.setItem(
+    "vinileSelezionato",
+    index
+  );
+
+  window.location.href = "prodotto.html";
+}
 }
 
   const datiUtente =
