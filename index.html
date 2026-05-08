@@ -4,11 +4,34 @@
   <title>SoundNest - Home</title>
 
   <style>
+    html{
+  scroll-behavior:smooth;
+}
+    
    body {
   margin: 0;
   font-family: 'Segoe UI', Arial;
   background:#0f0f0f;
   color:white;
+}
+
+    .slide img{
+  animation:zoomHero 8s linear infinite;
+}
+
+@keyframes zoomHero{
+
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.08);
+  }
+}
+
+    .feature-box{
+  cursor:pointer;
 }
 
     /* HEADER */
