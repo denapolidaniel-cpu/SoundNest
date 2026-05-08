@@ -105,8 +105,8 @@ document.getElementById("prodotto")
     </p>
 
     <p class="descrizione">
-      ${vinile.descrizione}
-    </p>
+  ${vinile.descrizione || "Nessuna descrizione disponibile."}
+</p>
 
     <button onclick="aggiungiCarrello()">
       Aggiungi al carrello
