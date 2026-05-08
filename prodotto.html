@@ -122,8 +122,6 @@ document.getElementById("prodotto")
 
 `;
 
-`;
-
 function aggiungiCarrello(){
 
   let carrello =
@@ -139,6 +137,34 @@ function aggiungiCarrello(){
 
   alert("Aggiunto al carrello");
 }
+
+const consigliati =
+vinili.filter(v =>
+
+  v.genere === vinile.genere &&
+
+  v.nome !== vinile.nome
+);
+
+const sezione =
+document.getElementById("consigliati");
+
+consigliati.slice(0,4).forEach(album => {
+
+  sezione.innerHTML += `
+
+    <div class="card">
+
+      <img src="${album.immagine}">
+
+      <h3>${album.nome}</h3>
+
+      <p>${album.artista}</p>
+
+    </div>
+
+  `;
+});
 
 </script>
 
