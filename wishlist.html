@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wishlist - SoundNest</title>
+
+  <style>
+
+    body{
+      margin:0;
+      background:#0f0f0f;
+      color:white;
+      font-family:'Segoe UI', sans-serif;
+    }
+
+    header{
+      padding:20px 40px;
+      background:#181818;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+    }
+
+    h1{
+      text-align:center;
+      margin-top:40px;
+    }
+
+    .container{
+
+      display:grid;
+
+      grid-template-columns:
+      repeat(auto-fit,minmax(250px,1fr));
+
+      gap:30px;
+
+      padding:40px;
+    }
+
+    .card{
+
+      background:#181818;
+
+      border-radius:20px;
+
+      overflow:hidden;
+
+      text-align:center;
+
+      transition:0.3s;
+
+      cursor:pointer;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+    }
+
+    .card img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+    }
+
+    .card h3{
+      margin-top:15px;
+    }
+
+    .card p{
+      color:#aaa;
+    }
+
+    button{
+
+      margin:20px;
+
+      padding:12px 20px;
+
+      border:none;
+
+      border-radius:30px;
+
+      background:#ff2b2b;
+
+      color:white;
+
+      cursor:pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h2>❤️ Wishlist</h2>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="vinili.html">Vinili</a>
+  </nav>
+
+</header>
+
+<h1>I tuoi preferiti</h1>
+
+<div class="container" id="container"></div>
+
+<script>
+
+const preferiti =
+JSON.parse(localStorage.getItem("preferiti"))
+|| [];
+
+const container =
+document.getElementById("container");
+
+if(preferiti.length === 0){
+
+  container.innerHTML = `
+    <h2>
+      Nessun vinile nei preferiti
+    </h2>
+  `;
+}
+
+preferiti.forEach(vinile => {
+
+  const card =
+  document.createElement("div");
+
+  card.className = "card";
+
+  card.innerHTML = `
+
+    <img src="${vinile.immagine}">
+
+    <h3>${vinile.nome}</h3>
+
+    <p>${vinile.artista}</p>
+
+    <p>${vinile.prezzo}€</p>
+
+    <button>
+      Rimuovi
+    </button>
+
+  `;
+
+  card.addEventListener("click", () => {
+
+    localStorage.setItem(
+      "vinileSelezionato",
+      JSON.stringify(vinile)
+    );
+
+    window.location.href =
+    "prodotto.html";
+
+  });
+
+  const bottone =
+  card.querySelector("button");
+
+  bottone.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+    let preferiti =
+      JSON.parse(localStorage.getItem("preferiti"))
+      || [];
+
+    preferiti = preferiti.filter(v =>
+      v.nome !== vinile.nome
+    );
+
+    localStorage.setItem(
+      "preferiti",
+      JSON.stringify(preferiti)
+    );
+
+    location.reload();
+
+  });
+
+  container.appendChild(card);
+
+});
+
+</script>
+
+</body>
+</html>
