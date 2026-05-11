@@ -717,21 +717,31 @@ function mostraVinili(lista){
       <button>Compra</button>
     `;
 
-    const bottone =
-    card.querySelector("button");
+    card.addEventListener("click", () => {
 
-    bottone.addEventListener("click", () => {
+  localStorage.setItem(
+    "vinileSelezionato",
+    JSON.stringify(vinile)
+  );
 
-      localStorage.setItem(
-        "vinileSelezionato",
-        JSON.stringify(vinile)
-      );
+  window.location.href =
+  "prodotto.html";
 
-      window.location.href =
-      "prodotto.html";
+});
 
-    });
+const bottone =
+card.querySelector("button");
 
+bottone.addEventListener("click", (e) => {
+
+  e.stopPropagation();
+
+  aggiungi(
+    vinile.nome,
+    vinile.prezzo
+  );
+
+});
     container.appendChild(card);
 
   });
