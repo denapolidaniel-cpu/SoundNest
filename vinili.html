@@ -867,6 +867,12 @@ aggiornaCarrello();
 
 mostraVinili(vinili);
 }
+
+  localStorage.setItem(
+  "catalogo",
+  JSON.stringify(vinili)
+);
+  
   aggiornaCarrello();
   
   mostraVinili(vinili);
