@@ -223,6 +223,42 @@ nav a:hover{
   transform:scale(1.05);
 }
 
+    #ricerca{
+
+  width:320px;
+
+  padding:15px 20px;
+
+  margin-top:20px;
+
+  border:none;
+  border-radius:40px;
+
+  background:#181818;
+
+  color:white;
+
+  font-size:16px;
+
+  outline:none;
+
+  border:2px solid transparent;
+
+  transition:0.3s;
+}
+
+#ricerca:focus{
+
+  border-color:#00d4ff;
+
+  box-shadow:
+  0 0 15px rgba(0,212,255,0.4);
+}
+
+#ricerca::placeholder{
+  color:#888;
+}
+    
 footer{
   margin-top:50px;
   padding:30px;
@@ -341,6 +377,12 @@ footer{
 <main>
   
 <h3>Filtra per genere</h3>
+  <input
+  type="text"
+  id="ricerca"
+  placeholder="Cerca per artista..."
+  oninput="cercaArtista()"
+>
 
 <div class="filtri">
   <button onclick="filtraGenere('tutti', this)" class="attivo">Tutti</button>
@@ -1034,6 +1076,25 @@ mostraVinili(vinili);
   aggiornaCarrello();
   
   mostraVinili(vinili);
+
+  function cercaArtista(){
+
+  const valore =
+    document.getElementById("ricerca")
+    .value
+    .toLowerCase();
+
+  const filtrati =
+    vinili.filter(v =>
+
+      v.artista
+      .toLowerCase()
+      .includes(valore)
+
+    );
+
+  mostraVinili(filtrati);
+}
 </script>
 
 </body>
