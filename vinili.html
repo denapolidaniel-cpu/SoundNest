@@ -380,7 +380,7 @@ footer{
   <input
   type="text"
   id="ricerca"
-  placeholder="Cerca per artista..."
+ placeholder="Cerca artista o album..."
   oninput="cercaArtista()"
 >
 
@@ -1075,11 +1075,16 @@ mostraVinili(vinili);
   const filtrati =
     vinili.filter(v =>
 
-      v.artista
-      .toLowerCase()
-      .includes(valore)
+      v.artista.toLowerCase().includes(valore)
+
+      ||
+
+      v.nome.toLowerCase().includes(valore)
 
     );
+
+  mostraVinili(filtrati);
+}
 
   mostraVinili(filtrati);
 }
