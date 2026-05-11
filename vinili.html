@@ -944,29 +944,10 @@ function mostraVinili(lista){
 
 });
 
-const bottone =
-card.querySelector("button");
-
-bottone.addEventListener("click", (e) => {
-
-  e.stopPropagation();
-
-  aggiungi(
-    vinile.nome,
-    vinile.prezzo
-  );
-
-});
-    container.appendChild(card);
-
-  });
-
-}
-
   const cuore =
 card.querySelector(".wishlist-btn");
 
-  let preferiti =
+let preferiti =
   JSON.parse(localStorage.getItem("preferiti"))
   || [];
 
@@ -1012,6 +993,25 @@ cuore.addEventListener("click", (e) => {
     JSON.stringify(preferiti)
   );
 });
+
+const bottone =
+card.querySelector("button");
+
+bottone.addEventListener("click", (e) => {
+
+  e.stopPropagation();
+
+  aggiungi(
+    vinile.nome,
+    vinile.prezzo
+  );
+
+});
+    container.appendChild(card);
+
+  });
+
+}
   
   const datiUtente =
   JSON.parse(localStorage.getItem("utenteLoggato"));
