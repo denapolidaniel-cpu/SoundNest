@@ -92,6 +92,43 @@ max-width:260px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
+
+  .wishlist-btn{
+
+  position:absolute;
+
+  top:15px;
+  right:15px;
+
+  width:45px;
+  height:45px;
+
+  border-radius:50%;
+
+  background:rgba(0,0,0,0.7);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  z-index:5;
+
+  transition:0.3s;
+}
+
+.wishlist-btn:hover{
+  transform:scale(1.1);
+}
+
+.card{
+  position:relative;
+}
+    
+
 .card:hover{
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 15px 35px rgba(0,212,255,0.3);
@@ -880,16 +917,20 @@ function mostraVinili(lista){
     card.className = "card";
 
     card.innerHTML = `
-      <img src="${vinile.immagine}" alt="${vinile.nome}">
+  <div class="wishlist-btn">
+    ❤️
+  </div>
 
-      <h3>${vinile.nome}</h3>
+  <img src="${vinile.immagine}" alt="${vinile.nome}">
 
-      <p>${vinile.artista}</p>
+  <h3>${vinile.nome}</h3>
 
-      <p>${vinile.prezzo}€</p>
+  <p>${vinile.artista}</p>
 
-      <button>Compra</button>
-    `;
+  <p>${vinile.prezzo}€</p>
+
+  <button>Compra</button>
+`;
 
     card.addEventListener("click", () => {
 
@@ -921,6 +962,56 @@ bottone.addEventListener("click", (e) => {
   });
 
 }
+
+  const cuore =
+card.querySelector(".wishlist-btn");
+
+  let preferiti =
+  JSON.parse(localStorage.getItem("preferiti"))
+  || [];
+
+const giaPresente = preferiti.find(v =>
+  v.nome === vinile.nome
+);
+
+if(giaPresente){
+  cuore.innerHTML = "❤️";
+} else {
+  cuore.innerHTML = "🤍";
+}
+
+cuore.addEventListener("click", (e) => {
+
+  e.stopPropagation();
+
+  let preferiti =
+    JSON.parse(localStorage.getItem("preferiti"))
+    || [];
+
+  const esiste = preferiti.find(v =>
+    v.nome === vinile.nome
+  );
+
+  if(esiste){
+
+    preferiti = preferiti.filter(v =>
+      v.nome !== vinile.nome
+    );
+
+    cuore.innerHTML = "🤍";
+
+  } else {
+
+    preferiti.push(vinile);
+
+    cuore.innerHTML = "❤️";
+  }
+
+  localStorage.setItem(
+    "preferiti",
+    JSON.stringify(preferiti)
+  );
+});
   
   const datiUtente =
   JSON.parse(localStorage.getItem("utenteLoggato"));
