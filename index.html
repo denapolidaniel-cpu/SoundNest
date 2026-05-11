@@ -473,23 +473,36 @@ onclick="vaiGenere('rock')">
 
 <div class="features">
 
-  <a href="thriller.html" class="feature-box">
-    <img src="https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png">
-    <h3>Thriller</h3>
-    <p>Michael Jackson</p>
-  </a>
+ <div class="feature-box"
+onclick="apriVinile('Thriller')">
 
-  <a href="utopia.html" class="feature-box">
-    <img src="copertinautopia.jpg">
-    <h3>Utopia</h3>
-    <p>Travis Scott</p>
-  </a>
+  <img src="https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png">
 
-  <a href="nevermind.html" class="feature-box">
-    <img src="https://upload.wikimedia.org/wikipedia/en/b/b7/NirvanaNevermindalbumcover.jpg">
-    <h3>Nevermind</h3>
-    <p>Nirvana</p>
-  </a>
+  <h3>Thriller</h3>
+
+  <p>Michael Jackson</p>
+
+</div>
+
+  <div class="feature-box"
+onclick="apriVinile('Utopia')">
+
+  <img src="copertinautopia.jpg">
+
+  <h3>Utopia</h3>
+
+  <p>Travis Scott</p>
+
+</div>
+
+ <div class="feature-box"
+onclick="apriVinile('Nevermind')">
+
+  <img src="https://upload.wikimedia.org/wikipedia/en/b/b7/NirvanaNevermindalbumcover.jpg">
+
+  <h3>Nevermind</h3>
+
+  <p>Nirvana</p>
 
 </div>
 
@@ -522,6 +535,24 @@ function vaiGenere(genere){
 
   window.location.href =
   "vinili.html";
+}
+
+function apriVinile(nome){
+
+  const vinili = JSON.parse(
+    localStorage.getItem("catalogo")
+  );
+
+  const vinile =
+    vinili.find(v => v.nome === nome);
+
+  localStorage.setItem(
+    "vinileSelezionato",
+    JSON.stringify(vinile)
+  );
+
+  window.location.href =
+  "prodotto.html";
 }
   </script>
 </main>
