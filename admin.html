@@ -1,1 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - SoundNest</title>
 
+  <style>
+
+    body{
+      margin:0;
+      background:#0f0f0f;
+      color:white;
+      font-family:'Segoe UI', sans-serif;
+    }
+
+    header{
+      background:#181818;
+
+      padding:20px 40px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+    }
+
+    h1{
+      text-align:center;
+      margin-top:30px;
+      color:#00d4ff;
+    }
+
+    .form{
+
+      max-width:700px;
+
+      margin:40px auto;
+
+      background:#181818;
+
+      padding:30px;
+
+      border-radius:25px;
+    }
+
+    input{
+
+      width:100%;
+
+      padding:15px;
+
+      margin:10px 0;
+
+      border:none;
+
+      border-radius:15px;
+
+      background:#111;
+
+      color:white;
+
+      font-size:16px;
+    }
+
+    button{
+
+      padding:15px 25px;
+
+      border:none;
+
+      border-radius:30px;
+
+      background:
+      linear-gradient(45deg,#00d4ff,#0066ff);
+
+      color:white;
+
+      font-size:16px;
+
+      cursor:pointer;
+    }
+
+    .container{
+
+      display:grid;
+
+      grid-template-columns:
+      repeat(auto-fit,minmax(250px,1fr));
+
+      gap:30px;
+
+      padding:40px;
+    }
+
+    .card{
+
+      background:#181818;
+
+      border-radius:20px;
+
+      overflow:hidden;
+
+      text-align:center;
+
+      padding-bottom:20px;
+    }
+
+    .card img{
+
+      width:100%;
+      height:250px;
+
+      object-fit:cover;
+    }
+
+    .delete-btn{
+
+      background:#ff2b2b;
+
+      margin-top:15px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h2>👑 Admin Panel</h2>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="vinili.html">Vinili</a>
+  </nav>
+
+</header>
+
+<h1>Gestione Catalogo</h1>
+
+<div class="form">
+
+  <input
+    type="text"
+    id="nome"
+    placeholder="Nome album"
+  >
+
+  <input
+    type="text"
+    id="artista"
+    placeholder="Artista"
+  >
+
+  <input
+    type="number"
+    id="prezzo"
+    placeholder="Prezzo"
+  >
+
+  <input
+    type="text"
+    id="genere"
+    placeholder="Genere"
+  >
+
+  <input
+    type="text"
+    id="immagine"
+    placeholder="Percorso immagine"
+  >
+
+  <button onclick="aggiungiVinile()">
+    Aggiungi Vinile
+  </button>
+
+</div>
+
+<div class="container" id="container"></div>
+
+<script>
+
+// CONTROLLO ADMIN
+
+const utente =
+JSON.parse(localStorage.getItem("utenteLoggato"));
+
+if(!utente || utente.ruolo !== "admin"){
+
+  window.location.href =
+  "login.html";
+}
+
+// PRENDO CATALOGO
+
+let vinili =
+JSON.parse(localStorage.getItem("catalogo"))
+|| [];
+
+const container =
+document.getElementById("container");
+
+// MOSTRA VINILI
+
+function mostraVinili(){
+
+  container.innerHTML = "";
+
+  vinili.forEach((vinile, index) => {
+
+    const card =
+    document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+
+      <img src="${vinile.immagine}">
+
+      <h3>${vinile.nome}</h3>
+
+      <p>${vinile.artista}</p>
+
+      <p>${vinile.prezzo}€</p>
+
+      <button
+        class="delete-btn"
+        onclick="eliminaVinile(${index})"
+      >
+        Elimina
+      </button>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+// AGGIUNGI VINILE
+
+function aggiungiVinile(){
+
+  const nuovoVinile = {
+
+    nome:
+    document.getElementById("nome").value,
+
+    artista:
+    document.getElementById("artista").value,
+
+    prezzo:
+    Number(document.getElementById("prezzo").value),
+
+    genere:
+    document.getElementById("genere").value,
+
+    immagine:
+    document.getElementById("immagine").value
+
+  };
+
+  vinili.push(nuovoVinile);
+
+  localStorage.setItem(
+    "catalogo",
+    JSON.stringify(vinili)
+  );
+
+  mostraVinili();
+
+  alert("Vinile aggiunto!");
+
+}
+
+// ELIMINA
+
+function eliminaVinile(index){
+
+  vinili.splice(index, 1);
+
+  localStorage.setItem(
+    "catalogo",
+    JSON.stringify(vinili)
+  );
+
+  mostraVinili();
+
+}
+
+mostraVinili();
+
+</script>
+
+</body>
+</html>
