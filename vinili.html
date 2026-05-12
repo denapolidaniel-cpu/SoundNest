@@ -907,6 +907,15 @@ JSON.parse(localStorage.getItem("catalogo"))
 }
 
 ];
+
+  if(!localStorage.getItem("catalogo")){
+
+  localStorage.setItem(
+    "catalogo",
+    JSON.stringify(vinili)
+  );
+}
+  
   const container =
 document.getElementById("container-vinili");
 
