@@ -365,7 +365,9 @@ contrast(1.1);
     <a href="login.html">Login</a>
     <a href="profilo.html">Profilo</a>
     
+    
   </nav>
+
 </header>
 
   <section class="hero-slider">
@@ -555,6 +557,19 @@ function apriVinile(nome){
 
   window.location.href =
   "prodotto.html";
+}
+
+      const utente =
+JSON.parse(localStorage.getItem("utenteLoggato"));
+
+if(utente && utente.ruolo === "admin"){
+
+  document.querySelector("nav")
+  .innerHTML += `
+    <a href="admin.html">
+      Admin
+    </a>
+  `;
 }
   </script>
 </main>
