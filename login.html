@@ -35,6 +35,9 @@
   <input type="password" id="password" placeholder="Password"><br>
 
   <button onclick="login()">Accedi</button>
+  <button onclick="registrati()">
+  Registrati
+</button>
 
   <p id="messaggio"></p>
 
@@ -44,39 +47,107 @@
 
 function login(){
 
-  const email = document.getElementById("email").value;
+  const email =
+    document.getElementById("email")
+    .value;
 
-  const password = document.getElementById("password").value;
+  const password =
+    document.getElementById("password")
+    .value;
 
-  // account demo
-  const emailCorretta = "admin@soundnest.com";
-  const passwordCorretta = "1234";
+  // prendo utenti salvati
+  const utenti =
+    JSON.parse(localStorage.getItem("utenti"))
+    || [];
 
-  if(email === emailCorretta &&
-     password === passwordCorretta){
+  // cerco utente
+  const utenteTrovato =
+    utenti.find(u =>
 
-    // UTENTE LOGGATO
-    const utente = {
-      email: email
-    };
+      u.email === email &&
+      u.password === password
 
-    // salva login
+    );
+
+  if(utenteTrovato){
+
+    // salvo sessione login
     localStorage.setItem(
       "utenteLoggato",
-      JSON.stringify(utente)
+
+      JSON.stringify(utenteTrovato)
     );
 
     document.getElementById("messaggio")
-      .innerText = "Login effettuato!";
+      .innerText =
+      "Login effettuato!";
 
-    // reindirizzamento
-    window.location.href = "vinili.html";
+    window.location.href =
+    "vinili.html";
 
   } else {
 
     document.getElementById("messaggio")
-      .innerText = "Email o password errati";
+      .innerText =
+      "Email o password errati";
   }
+}
+
+function registrati(){
+
+  const email =
+    document.getElementById("email")
+    .value;
+
+  const password =
+    document.getElementById("password")
+    .value;
+
+  if(email === "" || password === ""){
+
+    document.getElementById("messaggio")
+      .innerText =
+      "Compila tutti i campi";
+
+    return;
+  }
+
+  // utenti esistenti
+  let utenti =
+    JSON.parse(localStorage.getItem("utenti"))
+    || [];
+
+  // controllo email già usata
+  const esiste =
+    utenti.find(u => u.email === email);
+
+  if(esiste){
+
+    document.getElementById("messaggio")
+      .innerText =
+      "Email già registrata";
+
+    return;
+  }
+
+  // nuovo utente
+  const nuovoUtente = {
+
+    email: email,
+    password: password
+
+  };
+
+  utenti.push(nuovoUtente);
+
+  localStorage.setItem(
+    "utenti",
+    JSON.stringify(utenti)
+  );
+
+  document.getElementById("messaggio")
+    .innerText =
+    "Registrazione completata!";
 }
 
 </script>
