@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profilo - SoundNest</title>
 
+  <style>
+
+    body{
+      margin:0;
+      background:#0f0f0f;
+      color:white;
+      font-family:'Segoe UI', sans-serif;
+    }
+
+    header{
+      background:#181818;
+
+      padding:20px 40px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+    }
+
+    .profilo{
+
+      max-width:700px;
+
+      margin:60px auto;
+
+      background:#181818;
+
+      padding:40px;
+
+      border-radius:30px;
+
+      box-shadow:
+      0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .profilo h1{
+      color:#00d4ff;
+    }
+
+    .box{
+
+      margin-top:30px;
+
+      padding:25px;
+
+      border-radius:20px;
+
+      background:#111;
+    }
+
+    .numero{
+      font-size:42px;
+      color:#00d4ff;
+      font-weight:bold;
+    }
+
+    button{
+
+      margin-top:30px;
+
+      padding:15px 30px;
+
+      border:none;
+
+      border-radius:40px;
+
+      background:
+      linear-gradient(45deg,#ff2b2b,#ff0066);
+
+      color:white;
+
+      font-size:16px;
+      font-weight:bold;
+
+      cursor:pointer;
+    }
+
+    button:hover{
+      opacity:0.9;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h2>🎵 SoundNest</h2>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="vinili.html">Vinili</a>
+    <a href="wishlist.html">Wishlist</a>
+  </nav>
+
+</header>
+
+<div class="profilo">
+
+  <h1>👤 Profilo Utente</h1>
+
+  <div class="box">
+
+    <h3>Email</h3>
+
+    <p id="email"></p>
+
+  </div>
+
+  <div class="box">
+
+    <h3>❤️ Preferiti</h3>
+
+    <p class="numero" id="tot-preferiti">
+      0
+    </p>
+
+  </div>
+
+  <div class="box">
+
+    <h3>🛒 Prodotti nel carrello</h3>
+
+    <p class="numero" id="tot-carrello">
+      0
+    </p>
+
+  </div>
+
+  <button onclick="logout()">
+    Logout
+  </button>
+
+</div>
+
+<script>
+
+const utente =
+JSON.parse(localStorage.getItem("utenteLoggato"));
+
+if(!utente){
+
+  window.location.href =
+  "login.html";
+}
+
+document.getElementById("email")
+.innerText = utente.email;
+
+const preferiti =
+JSON.parse(localStorage.getItem("preferiti"))
+|| [];
+
+document.getElementById("tot-preferiti")
+.innerText = preferiti.length;
+
+const carrello =
+JSON.parse(localStorage.getItem("carrello"))
+|| [];
+
+document.getElementById("tot-carrello")
+.innerText = carrello.length;
+
+function logout(){
+
+  localStorage.removeItem("utenteLoggato");
+
+  window.location.href =
+  "login.html";
+}
+
+</script>
+
+</body>
+</html>
