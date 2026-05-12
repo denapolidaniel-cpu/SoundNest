@@ -45,54 +45,83 @@
 
 <script>
 
+<script>
+
 function login(){
 
   const email =
-    document.getElementById("email")
-    .value;
+    document.getElementById("email").value;
 
   const password =
-    document.getElementById("password")
-    .value;
+    document.getElementById("password").value;
 
-  // prendo utenti salvati
+  // ACCOUNT ADMIN
+  const adminEmail =
+    "admin@soundnest.com";
+
+  const adminPassword =
+    "1234";
+
+  // CONTROLLO ADMIN
+  if(
+    email === adminEmail &&
+    password === adminPassword
+  ){
+
+    const utente = {
+      email: email,
+      ruolo: "admin"
+    };
+
+    localStorage.setItem(
+      "utenteLoggato",
+      JSON.stringify(utente)
+    );
+
+    window.location.href =
+    "index.html";
+
+    return;
+  }
+
+  // UTENTE NORMALE
   const utenti =
     JSON.parse(localStorage.getItem("utenti"))
     || [];
 
-  // cerco utente
   const utenteTrovato =
     utenti.find(u =>
 
       u.email === email &&
-      u.password === password
 
+      u.password === password
     );
 
   if(utenteTrovato){
 
-    // salvo sessione login
+    const utente = {
+      email: utenteTrovato.email,
+      ruolo: "user"
+    };
+
     localStorage.setItem(
       "utenteLoggato",
-
-      JSON.stringify(utenteTrovato)
+      JSON.stringify(utente)
     );
 
-    document.getElementById("messaggio")
-      .innerText =
-      "Login effettuato!";
-
     window.location.href =
-    "vinili.html";
+    "index.html";
 
   } else {
 
     document.getElementById("messaggio")
-      .innerText =
-      "Email o password errati";
+    .innerText =
+    "Email o password errati";
   }
+
 }
 
+</script>
 function registrati(){
 
   const email =
